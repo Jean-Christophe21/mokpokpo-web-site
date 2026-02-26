@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login-page">
+    <div class="container-fluid p-0">
+        <div class="row g-0 login-row">
+            <!-- Left Panel (Carousel) -->
+            <div class="col-lg-8 d-none d-lg-block position-relative p-0 overflow-hidden">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="5000">
+                    <div class="carousel-inner h-100">
+                        <div class="carousel-item active">
+                            <!-- Image 1: Fleurs pétales de couleurs assorties (Lavande/Champs) -->
+                            <img src="https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Champs de fleurs colorées">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Image 2: Fleurs blanches avec des feuilles vertes (Plantes médicinales/Camomille) -->
+                            <img src="https://images.unsplash.com/photo-1606041008023-472dfb5e530f?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Fleurs blanches médicinales">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Image 3: Grand champ de tournesols -->
+                            <img src=https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Champ de tournesols">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Image 4: Local IMG 1 -->
+                            <img src="image/img1.jpg" class="d-block w-100" alt="Photo ferme locale 1">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Image 5: Local IMG 2 -->
+                            <img src="image/img2.jpg" class="d-block w-100" alt="Photo ferme locale 2">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Image 6: Local IMG 3 -->
+                            <img src="image/img3.webp" class="d-block w-100" alt="Photo ferme locale 3">
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!-- Overlay Content -->
+                <div class="left-panel-content px-5">
+                    <div class="mb-4">
+                        <div class="bg-white bg-opacity-10 p-3 rounded-circle d-inline-block backdrop-blur border border-white border-opacity-25">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3">Bienvenue chez la<br>Ferme Mokpokpo</h1>
+                    <p class="lead fw-light px-5 mx-auto" style="max-width: 600px;">Découvrez nos produits locaux et authentiques, cultivés avec passion et respect de la nature.</p>
+                </div>
+            </div>
+
+            <!-- Right Panel (Login Form) -->
+            <div class="col-lg-4 right-panel shadow-lg">
+                <div class="w-100 px-4" style="max-width: 400px;">
+                    <!-- Mobile Logo -->
+                    <div class="d-lg-none text-center mb-4">
+                        <span class="fw-bold h3 text-success">Mokpokpo</span>
+                    </div>
+                    
+                    <div class="mb-4 text-center">
+                        <h3 class="fw-bold text-dark mb-1">Connexion</h3>
+                        <p class="text-muted small">Accédez à votre espace client</p>
+                    </div>
+                    
+                    <div id="loginError" class="alert alert-danger d-none rounded-3 d-flex align-items-center mb-3 py-2 small shadow-sm border-0" role="alert">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2 flex-shrink-0">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span id="errorMessage" class="fw-medium"></span>
+                    </div>
+
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="email" class="form-label small text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0 border text-muted px-3 rounded-start-pill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </span>
+                                <input type="email" class="form-control custom-input border-start-0 ps-2 rounded-end-pill py-2" id="email" placeholder="nom@exemple.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="password" class="form-label small text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0 border text-muted px-3 rounded-start-pill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </span>
+                                <input type="password" class="form-control custom-input border-start-0 ps-2 rounded-end-pill py-2" id="password" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-success rounded-pill py-2 fw-bold shadow-sm" style="background-color: #16a34a; border-color: #16a34a;">Se connecter</button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-muted small mb-0">Pas de compte ? <a href="register.html" class="text-success fw-bold text-decoration-none">Créer un compte</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initClientLogin();
+        });
+    </script>
+</body>
+</html>

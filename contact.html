@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .hover-card { 
+            transition: all 0.3s ease; 
+        }
+        .hover-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; 
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar d-flex flex-column">
+            <div class="sidebar-header">
+                <a href="index.html" class="brand-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-leaf fa-lg"></i>
+                    </div>
+                    <span>Mokpokpo</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav flex-grow-1">
+                <div class="nav-label">Tableau de bord</div>
+                <a href="dashboard.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Vue d'ensemble</span>
+                </a>
+                
+                <div class="nav-label mt-4">Boutique</div>
+                <a href="products.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                    <span>Catalogue Produits</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <span>Mon Panier</span>
+                    <span class="badge bg-danger rounded-pill ms-auto shadow-sm" id="sidebarCartCount">0</span>
+                </a>
+                <a href="orders.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-truck-loading"></i></div>
+                    <span>Mes Commandes</span>
+                </a>
+                
+                <div class="nav-label mt-4">Paramètres</div>
+                <a href="dashboard.html#profile" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-user-cog"></i></div>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="contact.html" class="nav-link active">
+                    <div class="nav-icon"><i class="fas fa-headset"></i></div>
+                    <span>Support Client</span>
+                </a>
+            </nav>
+
+            <div class="user-minimenu">
+                <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                    <div class="bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #16a34a, #15803d);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                        <div class="fw-bold text-white text-truncate" id="userNameDisplay" style="font-size: 0.9rem;"></div>
+                        <div class="small text-muted text-truncate" style="font-size: 0.7rem; opacity: 0.7;">Compte Client</div>
+                    </div>
+                    <button onclick="logout()" class="btn btn-sm btn-outline-danger p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">
+                        <i class="fas fa-sign-out-alt fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark d-lg-none mobile-toggle p-0" id="sidebarToggle">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                    <h5 class="mb-0 fw-bold">Contact & Support</h5>
+                </div>
+
+                <div class="header-actions">
+                    <a href="cart.html" class="action-btn text-decoration-none">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="notification-badge cart-badge">0</span>
+                    </a>
+                    <div class="vr mx-2"></div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="text-end d-none d-sm-block">
+                            <div class="fw-bold small text-dark" id="dashboardUserName">Chargement...</div>
+                            <div class="small text-muted" id="dashboardUserEmail" style="font-size: 0.7rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center mb-5">
+                        <h2 class="fw-bold mb-3">Besoin d'aide ?</h2>
+                        <p class="text-muted w-75 mx-auto">
+                            Notre équipe est là pour répondre à toutes vos questions sur nos produits, vos commandes ou nos services.
+                            N'hésitez pas à nous contacter par e-mail ou par téléphone.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-10">
+                        <div class="row g-4 justify-content-center">
+                            <!-- Phone Card -->
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-card bg-white">
+                                    <div class="mb-4 mx-auto bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-phone-alt fa-2x text-primary"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-2">Téléphone</h5>
+                                    <p class="text-muted small mb-0">Du lundi au vendredi, 8h-18h</p>
+                                    <p class="fw-bold text-primary mt-3 mb-0 fs-5">+228 00 00 00 00</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Email Card -->
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-card bg-white">
+                                     <div class="mb-4 mx-auto bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-envelope fa-2x text-success"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-2">Email</h5>
+                                    <p class="text-muted small mb-0">Réponse sous 24h ouvrées</p>
+                                    <p class="fw-bold text-success mt-3 mb-0 fs-5">contact@mokpokpo.com</p>
+                                </div>
+                            </div>
+
+                            <!-- Address Card -->
+                            <div class="col-md-4">
+                                 <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-card bg-white">
+                                     <div class="mb-4 mx-auto bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-map-marker-alt fa-2x text-warning"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-2">Adresse</h5>
+                                    <p class="text-muted small mb-0">Visitez notre ferme</p>
+                                    <p class="fw-bold text-warning mt-3 mb-0 fs-5">Région des Plateaux, Togo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ CTA -->
+                        <div class="mt-5 text-center">
+                             <div class="card border-0 shadow-sm rounded-4 p-5 bg-light">
+                                <div class="py-2">
+                                    <h4 class="fw-bold mb-3">Vous avez encore des questions ?</h4>
+                                    <p class="text-muted mb-4">Consultez notre foire aux questions pour trouver des réponses immédiates.</p>
+                                    <button class="btn btn-dark rounded-pill px-4 py-2 fw-bold shadow-sm">
+                                        Voir la FAQ <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                             </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             // Mobile sidebar toggle
+            const toggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            if(toggle && sidebar) {
+                toggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Re-use dashboard user loader logic
+            // dashboard.js runs on load and sets user info
+        });
+    </script>
+</body>
+</html>

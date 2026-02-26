@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokpokpo - Supply Chain Plantes Médicinales</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                    </svg>
+                </div>
+                Mokpokpo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Catalogue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="cart.html" class="btn btn-outline-primary position-relative border-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success cart-badge" style="display: none;">
+                            0
+                        </span>
+                    </a>
+                    
+                    <div id="auth-links" class="d-flex gap-2">
+                        <a href="login.html" class="btn btn-outline-primary">Connexion</a>
+                        <a href="register.html" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                    
+                    <div id="user-links" class="d-flex gap-2 d-none align-items-center">
+                        <a href="dashboard.html" class="d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill text-decoration-none">
+                            <div class="user-avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <span class="text-muted small" id="userNameDisplay">Mon Compte</span>
+                        </a>
+                        <button onclick="logout()" class="btn btn-outline-danger btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                            Déconnexion
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <!-- Badge -->
+                    <div class="stats-badge mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>100% Naturel & Biologique</span>
+                    </div>
+
+                    <h1 class="display-4 hero-title mb-4">Cultivons ensemble un avenir plus vert</h1>
+                    <p class="hero-text mb-4">
+                        Découvrez notre sélection de plantes et produits agricoles naturels, cultivés avec passion au Togo. 
+                        De la ferme directement à votre porte.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
+                        <a href="products.html" class="btn btn-primary btn-lg">
+                            Parcourir le catalogue
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
+                                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="about.html" class="btn btn-outline-primary btn-lg">En savoir plus</a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Plantes disponibles</div>
+                        </div>
+                        <div class="h-100" style="width: 1px; background: var(--border-color);"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">1200+</div>
+                            <div class="stat-label">Clients satisfaits</div>
+                        </div>
+                        <div class="h-100" style="width: 1px; background: var(--border-color);"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Bio & Naturel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center position-relative">
+                    <div class="img-zoom" style="border-radius: 1.5rem; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop" 
+                             alt="Plantes Mokpokpo" 
+                             class="img-fluid" 
+                             style="width: 100%; height: auto; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">100% Naturel</h3>
+                        <p class="text-muted mb-0">Toutes nos plantes sont cultivées sans pesticides ni produits chimiques</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/>
+                            </svg>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Livraison Rapide</h3>
+                        <p class="text-muted mb-0">Livraison dans tout le Togo sous 24-48h</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Qualité Garantie</h3>
+                        <p class="text-muted mb-0">Garantie de satisfaction ou remboursement</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Support Expert</h3>
+                        <p class="text-muted mb-0">Conseils personnalisés par nos experts en agriculture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Preview -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-3">Notre Catalogue de Plantes</h2>
+                    <p class="lead text-muted">Des plantes sélectionnées avec soin pour leurs vertus et leur qualité exceptionnelle</p>
+                </div>
+            </div>
+
+            <div class="row g-4" id="featured-products">
+                <!-- Product Card 1 -->
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-product h-100 border-0 shadow-sm">
+                        <div class="position-relative img-zoom">
+                            <img src="https://images.unsplash.com/photo-1628016851899-c0f3afae6c6b?w=400&h=300&fit=crop" 
+                                 class="card-img-top" 
+                                 alt="Basilic Sacré"
+                                 style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white text-dark border">Plantes Médicinales</span>
+                            <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-3 rounded-circle" style="width: 40px; height: 40px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-1">Basilic Sacré</h5>
+                            <p class="text-muted small fst-italic mb-3">Ocimum tenuiflorum</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="h4 text-gradient fw-bold mb-0">2500 FCFA</p>
+                                    <p class="text-muted small mb-0">Stock: 45 unités</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-3 pt-0">
+                            <button class="btn btn-primary w-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                </svg>
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-product h-100 border-0 shadow-sm">
+                        <div class="position-relative img-zoom">
+                            <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=300&fit=crop" 
+                                 class="card-img-top" 
+                                 alt="Moringa"
+                                 style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white text-dark border">Superaliments</span>
+                            <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-3 rounded-circle" style="width: 40px; height: 40px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-1">Moringa</h5>
+                            <p class="text-muted small fst-italic mb-3">Moringa oleifera</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="h4 text-gradient fw-bold mb-0">3500 FCFA</p>
+                                    <p class="text-muted small mb-0">Stock: 32 unités</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-3 pt-0">
+                            <button class="btn btn-primary w-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                </svg>
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-product h-100 border-0 shadow-sm">
+                        <div class="position-relative img-zoom">
+                            <img src="https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=400&h=300&fit=crop" 
+                                 class="card-img-top" 
+                                 alt="Aloe Vera"
+                                 style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white text-dark border">Plantes Médicinales</span>
+                            <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-3 rounded-circle" style="width: 40px; height: 40px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-1">Aloe Vera</h5>
+                            <p class="text-muted small fst-italic mb-3">Aloe barbadensis</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="h4 text-gradient fw-bold mb-0">2000 FCFA</p>
+                                    <p class="text-muted small mb-0">Stock: 58 unités</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-3 pt-0">
+                            <button class="btn btn-primary w-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                </svg>
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="products.html" class="btn btn-outline-primary btn-lg">
+                    Voir tout le catalogue
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2">
+                        <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start mt-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                <!-- Brand Section -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="brand-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                            </svg>
+                        </div>
+                        <span class="fw-bold fs-5">Mokpokpo</span>
+                    </div>
+                    <p class="text-muted mb-3">Votre partenaire de confiance pour des plantes et produits agricoles naturels de qualité au Togo.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.55 2h8.9C19.4 2 22 4.6 22 7.55v8.9C22 19.4 19.4 22 16.45 22h-8.9C4.6 22 2 19.4 2 16.45v-8.9C2 4.6 4.6 2 7.55 2zm0 1.5C5.466 3.5 3.5 5.466 3.5 7.55v8.9c0 2.084 1.966 4.05 4.05 4.05h8.9c2.084 0 4.05-1.966 4.05-4.05v-8.9c0-2.084-1.966-4.05-4.05-4.05h-8.9zM12 6.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm5.75-2.25a1 1 0 110 2 1 1 0 010-2z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
+                        <li class="mb-2"><a href="products.html" class="text-decoration-none text-muted">Catalogue</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none text-muted">À propos</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-decoration-none text-muted">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Catégories</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Plantes Médicinales</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Herbes Aromatiques</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Superaliments</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Épices</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-success me-2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span class="text-muted">Lomé, Togo</span>
+                        </li>
+                        <li class="mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-success me-2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span class="text-muted">+229 XX XX XX XX</span>
+                        </li>
+                        <li class="mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-success me-2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span class="text-muted">contact@mokpokpo.tg</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-top">
+            <div class="container py-3">
+                <p class="text-center text-muted mb-0">© 2025 Mokpokpo. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

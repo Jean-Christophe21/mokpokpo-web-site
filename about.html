@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                </div>
+                Mokpokpo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Catalogue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="cart.html" class="btn btn-outline-primary position-relative border-0 bg-transparent text-dark hover-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success cart-badge" style="display: none;">
+                            0
+                        </span>
+                    </a>
+                    
+                    <div id="auth-links" class="d-flex gap-2">
+                        <a href="login.html" class="btn btn-outline-primary border-0 bg-transparent text-dark hover-shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </a>
+                    </div>
+                    
+                    <div id="user-links" class="d-flex gap-2 d-none align-items-center dropdown">
+                         <button class="btn btn-outline-primary border-0 bg-transparent text-dark hover-shadow d-flex align-items-center gap-1 dropdown-toggle" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><span class="dropdown-item-text text-muted small user-email">user@example.com</span></li>
+                            <li><span class="dropdown-item-text text-muted small text-capitalize user-role">client</span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html">Mon dashboard</a></li>
+                            <li class="admin-link d-none"><a class="dropdown-item" href="../App/admin.html">Panel admin</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button onclick="logout()" class="dropdown-item text-danger d-flex align-items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                                Déconnexion
+                            </button></li>
+                        </ul>
+                    </div>
+
+                    <a href="products.html" class="btn btn-primary ms-2 d-none d-md-inline-block">Commander</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1">
+        <div class="container py-5">
+            <!-- Title & Intro -->
+            <div class="mb-5 pb-4">
+                <h1 class="display-4 fw-bold mb-4 text-foreground">À propos de Mokpokpo</h1>
+                <p class="lead text-muted-foreground" style="max-width: 42rem;">
+                    Découvrez l'histoire et la mission de notre ferme spécialisée dans les plantes et produits naturels au Bénin
+                </p>
+            </div>
+
+            <!-- History Section -->
+            <div class="row align-items-center mb-5 pb-5 g-5">
+                <div class="col-lg-6">
+                    <img src="image/ferme-mokpokpo-plantation.jpg" class="img-fluid rounded-3 w-100 shadow-sm" style="height: 24rem; object-fit: cover;" alt="Ferme Mokpokpo">
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <h2 class="h1 fw-bold mb-4 text-foreground">Notre Histoire</h2>
+                    <p class="text-muted-foreground mb-4 lh-lg">
+                        Mokpokpo est née en 2015 de la passion de cultiver des plantes naturelles de qualité supérieure dans le
+                        respect de l'environnement. Basée au Bénin, notre ferme s'est développée en proposant des plantes
+                        médicinales, aromatiques et des superaliments cultivés avec soin.
+                    </p>
+                    <p class="text-muted-foreground mb-4 lh-lg">
+                        Nous croyons fermement aux vertus des plantes naturelles et à leur capacité à améliorer la santé et le
+                        bien-être. Notre engagement envers la qualité, la durabilité et l'innovation nous guide dans chaque
+                        décision.
+                    </p>
+                    <p class="text-muted-foreground lh-lg">
+                        Aujourd'hui, nous servons des clients à travers le Bénin, en partageant notre passion pour les produits
+                        naturels authentiques et leurs bienfaits.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="mb-5 pb-5">
+                <h2 class="h1 fw-bold mb-5 text-foreground">Nos Valeurs</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center p-4 border hover-shadow">
+                            <div class="card-body">
+                                <div class="text-success mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-100 h-100"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                                </div>
+                                <h3 class="h5 fw-bold text-foreground mb-2">Qualité</h3>
+                                <p class="small text-muted-foreground">
+                                    Nous sélectionnons les meilleures plantes pour garantir votre satisfaction
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center p-4 border hover-shadow">
+                            <div class="card-body">
+                                <div class="text-success mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                    <!-- Sprout -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-100 h-100"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
+                                </div>
+                                <h3 class="h5 fw-bold text-foreground mb-2">Durabilité</h3>
+                                <p class="small text-muted-foreground">
+                                    Notre engagement envers l'environnement guide nos pratiques agricoles
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center p-4 border hover-shadow">
+                            <div class="card-body">
+                                <div class="text-success mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                    <!-- Target -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-100 h-100"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                </div>
+                                <h3 class="h5 fw-bold text-foreground mb-2">Innovation</h3>
+                                <p class="small text-muted-foreground">
+                                    Nous explorons continuellement de nouvelles méthodes de culture et de transformation
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center p-4 border hover-shadow">
+                            <div class="card-body">
+                                <div class="text-success mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                    <!-- Heart -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-100 h-100"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                                </div>
+                                <h3 class="h5 fw-bold text-foreground mb-2">Bien-être</h3>
+                                <p class="small text-muted-foreground">
+                                    Votre santé et votre satisfaction sont notre priorité absolue
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activities Section -->
+            <div class="mb-5 pb-5">
+                <h2 class="h1 fw-bold mb-5 text-foreground">Nos Activités</h2>
+                <div class="row g-5">
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 shadow-sm border-start border-4 border-success rounded-0">
+                            <h3 class="h4 fw-bold text-foreground mb-3">Cultivation</h3>
+                            <p class="text-muted-foreground">
+                                Nous cultivons plus de 20 espèces de plantes médicinales, aromatiques et de superaliments à la ferme
+                                Mokpokpo en utilisant des méthodes biologiques durables.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 shadow-sm border-start border-4 border-success rounded-0">
+                            <h3 class="h4 fw-bold text-foreground mb-3">Transformation</h3>
+                            <p class="text-muted-foreground">
+                                Nos produits sont transformés avec soin pour préserver leurs propriétés naturelles. Nous proposons des
+                                formats variés : frais, séché, poudre et infusions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 shadow-sm border-start border-4 border-success rounded-0">
+                            <h3 class="h4 fw-bold text-foreground mb-3">Commercialisation</h3>
+                            <p class="text-muted-foreground">
+                                Nous commercialisons nos produits directement aux consommateurs et aux professionnels de la santé,
+                                garantissant traçabilité et qualité.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engagements Section -->
+            <div class="card border-0 bg-light p-5 mb-5 rounded-3">
+                <h2 class="h2 fw-bold text-foreground mb-4">Nos Engagements</h2>
+                <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                    <li class="d-flex gap-3">
+                        <span class="text-success fw-bold">✓</span>
+                        <span class="text-muted-foreground">Cultiver sans pesticides ni engrais chimiques</span>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <span class="text-success fw-bold">✓</span>
+                        <span class="text-muted-foreground">Assurer une traçabilité complète de nos produits</span>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <span class="text-success fw-bold">✓</span>
+                        <span class="text-muted-foreground">Soutenir les agriculteurs locaux et justes rémunérations</span>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <span class="text-success fw-bold">✓</span>
+                        <span class="text-muted-foreground">Préserver et restaurer les ressources naturelles</span>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <span class="text-success fw-bold">✓</span>
+                        <span class="text-muted-foreground">
+                            Éduquer nos clients sur les bienfaits des plantes naturelles
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light border-top">
+        <div class="container pt-5 pb-4">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex flex-column gap-3">
+                        <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+                            <div class="bg-success text-white rounded p-2 d-flex align-items-center justify-content-center" style="width: 2.5rem; height: 2.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                            </div>
+                            <span class="h5 fw-bold text-dark mb-0">Mokpokpo</span>
+                        </a>
+                        <p class="text-muted small mb-0">
+                            Votre partenaire de confiance pour des plantes et produits agricoles naturels de qualité au Bénin.
+                        </p>
+                        <div class="d-flex gap-2">
+                             <!-- Social Icons -->
+                             <a href="#" class="btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 2.25rem; height: 2.25rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                             </a>
+                             <a href="#" class="btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 2.25rem; height: 2.25rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                             </a>
+                             <a href="#" class="btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 2.25rem; height: 2.25rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3 text-dark">Navigation</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-muted small">
+                        <li><a href="index.html" class="text-decoration-none text-muted">Accueil</a></li>
+                        <li><a href="products.html" class="text-decoration-none text-muted">Catalogue</a></li>
+                        <li><a href="about.html" class="text-decoration-none text-muted">À propos</a></li>
+                        <li><a href="contact.html" class="text-decoration-none text-muted">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3 text-dark">Catégories</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-muted small">
+                         <li><a href="#" class="text-decoration-none text-muted">Plantes Médicinales</a></li>
+                         <li><a href="#" class="text-decoration-none text-muted">Herbes Aromatiques</a></li>
+                         <li><a href="#" class="text-decoration-none text-muted">Superaliments</a></li>
+                         <li><a href="#" class="text-decoration-none text-muted">Épices</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-3 text-dark">Contact</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-muted small">
+                        <li class="d-flex gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                             <span>Lomé, Togo</span>
+                        </li>
+                        <li class="d-flex gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                             <span>+228 90 00 00 00</span>
+                        </li>
+                        <li class="d-flex gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                             <span>contact@mokpokpo.tg</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top mt-5 pt-4 text-center text-muted small">
+                © 2025 Mokpokpo. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

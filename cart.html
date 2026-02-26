@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .cart-item { transition: background-color 0.2s; }
+        .cart-item:hover { background-color: #f9fafb; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar d-flex flex-column">
+            <div class="sidebar-header">
+                <a href="index.html" class="brand-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-leaf fa-lg"></i>
+                    </div>
+                    <span>Mokpokpo</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav flex-grow-1">
+                <div class="nav-label">Tableau de bord</div>
+                <a href="dashboard.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Vue d'ensemble</span>
+                </a>
+                
+                <div class="nav-label mt-4">Boutique</div>
+                <a href="products.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                    <span>Catalogue Produits</span>
+                </a>
+                <a href="cart.html" class="nav-link active">
+                    <div class="nav-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <span>Mon Panier</span>
+                    <span class="badge bg-danger rounded-pill ms-auto shadow-sm" id="sidebarCartCount">0</span>
+                </a>
+                <a href="orders.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-truck-loading"></i></div>
+                    <span>Mes Commandes</span>
+                </a>
+                
+                <div class="nav-label mt-4">Paramètres</div>
+                <a href="dashboard.html#profile" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-user-cog"></i></div>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-headset"></i></div>
+                    <span>Support Client</span>
+                </a>
+            </nav>
+
+            <div class="user-minimenu">
+                <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                    <div class="bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #16a34a, #15803d);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                        <div class="fw-bold text-white text-truncate" id="userNameDisplay" style="font-size: 0.9rem;"></div>
+                        <div class="small text-muted text-truncate" style="font-size: 0.7rem; opacity: 0.7;">Compte Client</div>
+                    </div>
+                    <button onclick="logout()" class="btn btn-sm btn-outline-danger p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">
+                        <i class="fas fa-sign-out-alt fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark d-lg-none mobile-toggle p-0" id="sidebarToggle">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                    <h5 class="mb-0 fw-bold">Mon Panier</h5>
+                </div>
+
+                <div class="header-actions">
+                    <a href="products.html" class="btn btn-success btn-sm rounded-pill px-3 shadow-sm">
+                        <i class="fas fa-plus me-2"></i>Commander
+                    </a>
+                    <div class="vr mx-2"></div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="text-end d-none d-sm-block">
+                            <div class="fw-bold small text-dark" id="dashboardUserName"></div>
+                            <div class="small text-muted" id="dashboardUserEmail" style="font-size: 0.7rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+                
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3 px-2 pt-2">
+                                <h5 class="fw-bold mb-0">Articles (<span id="cartItemsCount">0</span>)</h5>
+                                <button class="btn btn-link text-danger text-decoration-none btn-sm" onclick="clearCart()">
+                                    <i class="fas fa-trash-alt me-1"></i>Vider tout
+                                </button>
+                            </div>
+                            <div id="cartItemsList">
+                                <div class="text-center py-5">
+                                    <i class="fas fa-shopping-basket fa-3x text-light mb-3" style="color: #e5e7eb !important;"></i>
+                                    <p class="text-muted">Votre panier est vide</p>
+                                    <a href="products.html" class="btn btn-primary mt-3 rounded-pill">Catalogue</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="cartSummary" class="card border-0 shadow-sm rounded-4 p-4 d-none">
+                            <h5 class="fw-bold mb-3">Résumé de la commande</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Sous-total</span>
+                                <span class="fw-bold"><span id="cartTotal">0</span> FCFA</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Livraison</span>
+                                <span class="text-success small">Calculé à l'étape suivante</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="fw-bold fs-5">Total</span>
+                                <span class="fw-bold fs-5 text-success"><span id="cartTotalDisplay">0</span> FCFA</span>
+                            </div>
+                            <button class="btn btn-success w-100 py-2 rounded-pill fw-bold shadow-sm" onclick="proceedToCheckout()">
+                                Passer la commande <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                            <div class="text-center mt-3">
+                                <a href="products.html" class="text-muted small text-decoration-none">Continuer vos achats</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Setup dashboard interactions
+            const toggle = document.getElementById("sidebarToggle");
+            const sidebar = document.querySelector(".sidebar");
+            if(toggle && sidebar) {
+                toggle.addEventListener("click", () => sidebar.classList.toggle("show"));
+            }
+
+            // check access
+            if(window.checkPageAccess) {
+                checkPageAccess("CLIENT");
+            }
+            
+            // Initial cart load
+            if(window.loadCart) {
+                loadCart();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Commandes - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar d-flex flex-column">
+            <div class="sidebar-header">
+                <a href="index.html" class="brand-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-leaf fa-lg"></i>
+                    </div>
+                    <span>Mokpokpo</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav flex-grow-1">
+                <div class="nav-label">Tableau de bord</div>
+                <a href="dashboard.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Vue d'ensemble</span>
+                </a>
+                
+                <div class="nav-label mt-4">Boutique</div>
+                <a href="products.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                    <span>Catalogue Produits</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <span>Mon Panier</span>
+                    <span class="badge bg-danger rounded-pill ms-auto shadow-sm" id="sidebarCartCount">0</span>
+                </a>
+                <a href="orders.html" class="nav-link active">
+                    <div class="nav-icon"><i class="fas fa-truck-loading"></i></div>
+                    <span>Mes Commandes</span>
+                </a>
+                
+                <div class="nav-label mt-4">Paramètres</div>
+                <a href="dashboard.html#profile" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-user-cog"></i></div>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-headset"></i></div>
+                    <span>Support Client</span>
+                </a>
+            </nav>
+
+            <div class="user-minimenu">
+                <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                    <div class="bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #16a34a, #15803d);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                        <div class="fw-bold text-white text-truncate" id="userNameDisplay" style="font-size: 0.9rem;"></div>
+                        <div class="small text-muted text-truncate" style="font-size: 0.7rem; opacity: 0.7;">Compte Client</div>
+                    </div>
+                    <button onclick="logout()" class="btn btn-sm btn-outline-danger p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">
+                        <i class="fas fa-sign-out-alt fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark d-lg-none mobile-toggle p-0" id="sidebarToggle">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                    <h5 class="mb-0 fw-bold">Historique des Commandes</h5>
+                </div>
+
+                <div class="header-actions">
+                    <a href="cart.html" class="action-btn text-decoration-none">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="notification-badge cart-badge">0</span>
+                    </a>
+                    <div class="vr mx-2"></div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="text-end d-none d-sm-block">
+                            <div class="fw-bold small text-dark" id="dashboardUserName"></div>
+                            <div class="small text-muted" id="dashboardUserEmail" style="font-size: 0.7rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+                
+                <div class="custom-table-container p-0 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th scope="col" style="width: 15%;">Réf.</th>
+                                    <th scope="col" style="width: 20%;">Date</th>
+                                    <th scope="col" style="width: 25%;">Articles</th>
+                                    <th scope="col" style="width: 15%;">Total</th>
+                                    <th scope="col" style="width: 15%;">Statut</th>
+                                    <th scope="col" style="width: 10%;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersHistoryList">
+                                <tr>
+                                    <td colspan="6" class="text-center py-5">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            <div class="spinner-border text-success mb-3" role="status"></div>
+                                            <p class="text-muted mb-0 fw-medium">Chargement des commandes...</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             // Mobile sidebar toggle
+            const toggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            if(toggle && sidebar) {
+                toggle.addEventListener('click', () => sidebar.classList.toggle('show'));
+            }
+            
+            // Re-use dashboard logic to load orders
+            // dashboard.js loads loadOrders() on init
+            // But we need to ensure it renders into #ordersHistoryList which exists here
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4">?? Diagnostic du Systéme d'Authentification</h1>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">état du LocalStorage</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Token :</strong>
+                    <pre id="token-status" class="bg-light p-3 rounded mt-2"></pre>
+                </div>
+                <div class="mb-3">
+                    <strong>Utilisateur :</strong>
+                    <pre id="user-status" class="bg-light p-3 rounded mt-2"></pre>
+                </div>
+                <div class="mb-3">
+                    <strong>Panier :</strong>
+                    <pre id="cart-status" class="bg-light p-3 rounded mt-2"></pre>
+                </div>
+                <div class="mb-3">
+                    <strong>Commandes :</strong>
+                    <pre id="orders-status" class="bg-light p-3 rounded mt-2"></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Test d'Accès au Dashboard</h5>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary mb-3" onclick="testDashboardAccess()">Tester l'accès au Dashboard</button>
+                <div id="dashboard-test-result"></div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Actions Rapides</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex gap-2 flex-wrap">
+                    <button class="btn btn-outline-primary" onclick="window.location.href='login.html'">Aller à la Connexion</button>
+                    <button class="btn btn-outline-success" onclick="window.location.href='dashboard.html'">Aller au Dashboard</button>
+                    <button class="btn btn-outline-warning" onclick="clearAll()">Vider tout le LocalStorage</button>
+                    <button class="btn btn-outline-info" onclick="location.reload()">Rafraîchir</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">Guide de Dépannage</h5>
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li class="mb-2"><strong>Si vous voyez "Token: null"</strong> ? Vous n'êtes pas connecté. Allez sur login.html</li>
+                    <li class="mb-2"><strong>Si le token existe mais le dashboard redirige</strong> ? Le token est peut-être expiré. Reconnectez-vous.</li>
+                    <li class="mb-2"><strong>Si "Utilisateur: null"</strong> ? Déconnectez-vous et reconnectez-vous</li>
+                    <li class="mb-2"><strong>Si le clic sur profil ne fonctionne pas</strong> ? Vérifiez que vous êtes sur une page avec la bonne navbar</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_URL = 'https://bd-mokpokokpo.onrender.com';
+
+        // Load and display localStorage data
+        function loadDiagnostic() {
+            // Token
+            const token = localStorage.getItem('token');
+            document.getElementById('token-status').textContent = token 
+                ? `? Présent (${token.substring(0, 50)}...)` 
+                : '? Absent - Vous n\'êtes pas connecté';
+
+            // User
+            const currentUser = localStorage.getItem('currentUser');
+            document.getElementById('user-status').textContent = currentUser 
+                ? `? ${JSON.stringify(JSON.parse(currentUser), null, 2)}`
+                : '? Absent';
+
+            // Cart
+            const cart = localStorage.getItem('cart');
+            document.getElementById('cart-status').textContent = cart 
+                ? `? ${JSON.parse(cart).length} article(s)`
+                : '? Vide';
+
+            // Orders
+            const orders = localStorage.getItem('orders');
+            document.getElementById('orders-status').textContent = orders 
+                ? `? ${JSON.parse(orders).length} commande(s)`
+                : '? Aucune commande';
+        }
+
+        async function testDashboardAccess() {
+            const resultDiv = document.getElementById('dashboard-test-result');
+            resultDiv.innerHTML = '<div class="spinner-border" role="status"></div> Test en cours...';
+
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        ? Aucun token trouvé. Vous devez vous connecter d'abord.
+                        <a href="login.html" class="alert-link">Aller à la connexion</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            ? Token valide ! Connecté en tant que: ${user.prenom} ${user.nom} (${user.email})
+                            <br><a href="dashboard.html" class="alert-link mt-2 d-inline-block">Aller au Dashboard maintenant</a>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            ? Token invalide ou expiré (Status: ${response.status})
+                            <br>Veuillez vous reconnecter.
+                            <a href="login.html" class="alert-link">Aller à la connexion</a>
+                        </div>
+                    `;
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('currentUser');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        ? Erreur de connexion au serveur: ${error.message}
+                        <br>Vérifiez votre connexion internet.
+                    </div>
+                `;
+            }
+        }
+
+        function clearAll() {
+            if (confirm('êtes-vous sûr de vouloir vider tout le localStorage ? Cela vous déconnectera.')) {
+                localStorage.clear();
+                alert('LocalStorage vidé !');
+                location.reload();
+            }
+        }
+
+        // Load on page load
+        loadDiagnostic();
+
+        // Auto-refresh every 5 seconds
+        setInterval(loadDiagnostic, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Mokpokpo</title>
+    <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css">
+    <!-- FontAwesome for better icons (using CDN for reliability) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar d-flex flex-column">
+            <div class="sidebar-header">
+                <a href="index.html" class="brand-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-leaf fa-lg"></i>
+                    </div>
+                    <span>Mokpokpo</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav flex-grow-1">
+                <div class="nav-label">Tableau de bord</div>
+                <a href="dashboard.html" class="nav-link active">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Vue d'ensemble</span>
+                </a>
+                
+                <div class="nav-label mt-4">Boutique</div>
+                <a href="products.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                    <span>Catalogue Produits</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <span>Mon Panier</span>
+                    <span class="badge bg-danger rounded-pill ms-auto shadow-sm" id="sidebarCartCount">0</span>
+                </a>
+                <a href="orders.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-truck-loading"></i></div>
+                    <span>Mes Commandes</span>
+                </a>
+                
+                <div class="nav-label mt-4">Paramètres</div>
+                <a href="#profile" class="nav-link" data-section="profile">
+                    <div class="nav-icon"><i class="fas fa-user-cog"></i></div>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-headset"></i></div>
+                    <span>Support Client</span>
+                </a>
+            </nav>
+
+            <div class="user-minimenu">
+                <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                    <div class="bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #16a34a, #15803d);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                        <div class="fw-bold text-white text-truncate" id="userNameDisplay" style="font-size: 0.9rem;"></div>
+                        <div class="small text-muted text-truncate" style="font-size: 0.7rem; opacity: 0.7;">Compte Client</div>
+                    </div>
+                    <button onclick="logout()" class="btn btn-sm btn-outline-danger p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">
+                        <i class="fas fa-sign-out-alt fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark d-lg-none mobile-toggle p-0" id="sidebarToggle">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+
+                <div class="header-actions">
+                    <a href="products.html" class="btn btn-success btn-sm rounded-pill px-3 shadow-sm">
+                        <i class="fas fa-plus me-2"></i>Commander
+                    </a>
+                    <button class="action-btn">
+                        <i class="far fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <div class="vr mx-2"></div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="text-end d-none d-sm-block">
+                            <!-- User name will be injected here -->
+                            <div class="fw-bold small text-dark" id="dashboardUserName"></div>
+                            <div class="small text-muted" id="dashboardUserEmail" style="font-size: 0.7rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Wrapper -->
+            <div class="content-wrapper">
+                
+                <!-- Overview Section -->
+                <div id="overview-section" class="dashboard-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="h4 fw-bold mb-0">Tableau de Bord</h2>
+                        <span class="text-muted small">Derniére mise à jour: Aujourd'hui</span>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-6 col-xl-3">
+                            <div class="stat-card">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="text-muted small fw-bold text-uppercase">Total Commandes</div>
+                                    <div class="icon-wrapper bg-blue-light mb-0">
+                                        <i class="fas fa-shopping-bag fa-lg"></i>
+                                    </div>
+                                </div>
+                                <h3 class="fw-bold mb-1" id="totalOrders">0</h3>
+                                <div class="text-muted small">Commandes passées</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="stat-card">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="text-muted small fw-bold text-uppercase">Panier Actuel</div>
+                                    <div class="icon-wrapper bg-orange-light mb-0">
+                                        <i class="fas fa-shopping-cart fa-lg"></i>
+                                    </div>
+                                </div>
+                                <h3 class="fw-bold mb-1" id="cartItemsCount">0</h3>
+                                <div class="text-muted small">Articles en attente</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="stat-card">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="text-muted small fw-bold text-uppercase">Dépenses Totales</div>
+                                    <div class="icon-wrapper bg-green-light mb-0">
+                                        <i class="fas fa-wallet fa-lg"></i>
+                                    </div>
+                                </div>
+                                <h3 class="fw-bold mb-1"><span id="totalSpent">0</span> FCFA</h3>
+                                <div class="text-muted small">Investi depuis le début</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="stat-card">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="text-muted small fw-bold text-uppercase">Fidélité</div>
+                                    <div class="icon-wrapper bg-purple-light mb-0">
+                                        <i class="fas fa-star fa-lg"></i>
+                                    </div>
+                                </div>
+                                <h3 class="fw-bold mb-1">Standard</h3>
+                                <div class="text-muted small">Membre actif</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders Table -->
+                    <div class="custom-table-container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold mb-0">Commandes Récentes</h5>
+                            <a href="orders.html" class="btn btn-light btn-sm text-primary fw-bold">Tout voir</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 15%;">Réf.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 25%;">Articles</th>
+                                        <th scope="col" style="width: 15%;">Total</th>
+                                        <th scope="col" style="width: 15%;">Statut</th>
+                                        <th scope="col" style="width: 10%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOrdersList">
+                                    <tr>
+                                        <td colspan="6" class="text-center py-5">
+                                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                                <div class="bg-light rounded-circle p-3 mb-3">
+                                                    <i class="fas fa-box-open fa-2x text-secondary opacity-50"></i>
+                                                </div>
+                                                <p class="text-muted mb-0 fw-medium">Aucune commande récente</p>
+                                                <a href="products.html" class="btn btn-sm btn-link text-decoration-none mt-1">Commencer vos achats &rarr;</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Section -->
+                <div id="cart-section" class="dashboard-section d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="h4 fw-bold mb-0">Mon Panier</h2>
+                        <button class="btn btn-outline-danger btn-sm" onclick="clearCart()">
+                            <i class="fas fa-trash-alt me-2"></i>Vider
+                        </button>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="card border-0 shadow-sm rounded-4 p-3">
+                                <div id="cartItemsList">
+                                    <div class="text-center py-5">
+                                        <i class="fas fa-shopping-basket fa-3x text-light mb-3" style="color: #e5e7eb !important;"></i>
+                                        <p class="text-muted">Votre panier est vide</p>
+                                        <a href="products.html" class="btn btn-primary mt-3 rounded-pill">Catalogue</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div id="cartSummary" class="card border-0 shadow-sm rounded-4 p-4 d-none">
+                                <h5 class="fw-bold mb-3">Résumé</h5>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Sous-total</span>
+                                    <span class="fw-bold"><span id="cartTotal">0</span> FCFA</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Livraison</span>
+                                    <span class="text-success small">Calculé aprés</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <span class="fw-bold fs-5">Total</span>
+                                    <span class="fw-bold fs-5 text-success"><span id="cartTotalDisplay">0</span> FCFA</span>
+                                </div>
+                                <button class="btn btn-success w-100 py-2 rounded-pill fw-bold" onclick="proceedToCheckout()">
+                                    Passer la commande
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="orders-section" class="dashboard-section d-none">
+                    <h2 class="h4 fw-bold mb-4">Historique des Commandes</h2>
+                    <div class="custom-table-container p-0 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col" style="width: 15%;">Réf.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 25%;">Articles</th>
+                                        <th scope="col" style="width: 15%;">Total</th>
+                                        <th scope="col" style="width: 15%;">Statut</th>
+                                        <th scope="col" style="width: 10%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersHistoryList">
+                                    <tr>
+                                        <td colspan="6" class="text-center py-5">
+                                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                                <div class="bg-light rounded-circle p-3 mb-3">
+                                                    <i class="fas fa-history fa-2x text-secondary opacity-50"></i>
+                                                </div>
+                                                <p class="text-muted mb-0 fw-medium">Aucune commande trouvée</p>
+                                                <a href="products.html" class="btn btn-sm btn-link text-decoration-none mt-1">Commencer vos achats &rarr;</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div id="profile-section" class="dashboard-section d-none">
+                    <h2 class="h4 fw-bold mb-4">Mon Profil</h2>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card border-0 shadow-sm rounded-4 p-4">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="bg-light rounded-circle p-3 me-3">
+                                        <i class="fas fa-user fa-2x text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-0">Informations Personnelles</h5>
+                                        <p class="text-muted small mb-0">Gérez vos informations de connexion</p>
+                                    </div>
+                                </div>
+                                
+                                <form id="profileForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted small fw-bold text-uppercase">Prénom</label>
+                                            <input type="text" class="form-control bg-light border-0 py-2" id="profileFirstName" readonly>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted small fw-bold text-uppercase">Nom</label>
+                                            <input type="text" class="form-control bg-light border-0 py-2" id="profileLastName" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label text-muted small fw-bold text-uppercase">Email</label>
+                                            <input type="email" class="form-control bg-light border-0 py-2" id="profileEmail" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label text-muted small fw-bold text-uppercase">Réle</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="text" class="form-control bg-light border-0 py-2 me-2" id="profileRole" readonly style="width: auto;">
+                                                <span class="badge bg-success rounded-pill">Actif</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/cart.js"></script>
+    <!-- Basic script for mobile toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             // Mobile sidebar toggle
+            const toggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            if(toggle && sidebar) {
+                toggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Check Access
+            if(window.checkPageAccess) {
+                checkPageAccess('CLIENT');
+            }
+        });
+    </script>
+</body>
+</html>
